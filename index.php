@@ -10,6 +10,11 @@
 		echo "<br>";
 		$user1 = null;
 		print_r("print_r on null object: " . $user1);
+		echo "<br><br>";
+		$subscriber1 = new Subscriber("Jeff","jkl;", "555-5555", "jeff@fake.net");
+		print_r($subscriber1);
+		echo "<br>";
+		$subscriber1 = null;
 
 		class User
 		{
@@ -28,6 +33,28 @@
 			function display()
 			{
 				echo "name: $this->name password: $this->password<br>";
+			}
+		}
+
+		class Subscriber extends User
+		{
+			public $phone, $email;
+
+			function __construct($name, $password, $phone, $email)
+			{
+				$this->phone = $phone;
+				$this->email = $email;
+				parent::__construct($name, $password);
+			}
+
+			function display()
+			{
+				parent::display();
+				echo "phone: $this->phone email: $this->email<br>";
+			}
+
+			function __destruct() {
+				parent::__destruct();
 			}
 		}
 		?>
