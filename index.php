@@ -5,7 +5,11 @@
 	<body>
 		<?php
 		echo "<h1>PHP Objects</h1>";
-		print_r(new User("bill", "asdf"));
+		$user1 = new User("bill", "asdf");
+		print_r($user1);
+		echo "<br>";
+		$user1 = null;
+		print_r("print_r on null object: " . $user1);
 
 		class User
 		{
@@ -15,6 +19,10 @@
 				$this->name = $name;
 				$this->password = $password;
 				$this->display();
+			}
+
+			function __destruct() {
+				echo "Destructing $this->name<br>";
 			}
 
 			function display()
